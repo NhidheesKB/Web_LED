@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function() {
             counter = 0; 
         }
     }
+    async function getData(){
+        const data=await (await fetch('/api/hello')).json()
+        console.log(data)
+    }
+    getData()
     setInterval(incrementCounter, 2000);
     updateValue();
 });
