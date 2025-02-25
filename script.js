@@ -20,10 +20,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     setInterval(incrementCounter, 2000);
-
-    
-    
-    
-    // Initialize value box state
     updateValue();
 });
