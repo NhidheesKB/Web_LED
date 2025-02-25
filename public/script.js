@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     async function getData(){
-        const data=await (await fetch('/api/hello')).json()
-        console.log(data)
+        const res=await axios.get('/api/hello')
+        console.log(res.data)
     }
     getData()
     setInterval(incrementCounter, 2000);
