@@ -51,7 +51,7 @@ const updateText=(message)=>{
 const toggleSwitch=async(e)=>{
     try {
         const {checked}=e.target
-        valueBox.innerHTML=state?'ON':"OFF"
+        valueBox.innerHTML=checked?'ON':"OFF"
         const res=await axios.post('/api/toggle',{status:checked})
         updateText(checked?'on':'off');
     } catch (error) {
