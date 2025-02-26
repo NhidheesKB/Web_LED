@@ -1,29 +1,29 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const toggleComputer = document.getElementById("toggleComputer");
-    const valueBox = document.getElementById("valueBox");
-    const counterBox = document.getElementById("counterBox");
-    let counter=0;
-
-    function updateValue() {
-        valueBox.textContent = toggleComputer.checked ? "ON" : "OFF";
-    }
-
-    toggleComputer.addEventListener("click", function() {
-        updateValue();
-    });
-    function incrementCounter() {
-        if (counter <= 255) {
-            counterBox.textContent = `${counter}V`;
-            counter++;
+const toggleComputer = document.getElementById("toggleComputer");
+const valueBox = document.getElementById("valueBox");
+const counterBox = document.getElementById("counterBox");
+const broker = "ws://2a462fd66ce44b21bde8b6550d558ab2.s1.eu.hivemq.cloud"; 
+const options = {
+    clientId: "web_" + crypto.randomUUID(),
+    username: "Subscriber",  
+    password: "Subscriber@2002", 
+    clean: true
+};
+const client = mqtt.connect(broker, options);
+client.on("connect", function () {
+    console.log("Connected to HiveMQ Cloud");
+    client.subscribe("test", function (err) {
+        if (!err) {
+            console.log("Subscribed to test");
         } else {
-            counter = 0; 
+            console.error("Subscription error:", err);
         }
-    }
-    async function getData(){
-        const res=await axios.get('/api/hello')
-        console.log(res.data)
-    }
-    getData()
-    setInterval(incrementCounter, 2000);
-    updateValue();
+    });
 });
+
+client.on("message", function (topic, message) {
+    console.log(topic,message)
+});
+const mount=()=>{
+
+}
+document.addEventListener('DOMContentLoaded',mount)
