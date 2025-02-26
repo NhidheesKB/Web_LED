@@ -9,25 +9,22 @@ const options = {
     clean: true
 };
 const client = mqtt.connect(broker, options);
-client.on("connect", function () {
+client.on("connect", async function () {
     console.log("Connected to HiveMQ Cloud");
-    client.subscribe("Led", function (err) {
-        if (!err) {
-            console.log("Subscribed to led");
-        } else {
-            console.error("Subscription error:", err);
-        }
-    });
+    client.subscribe("Led");
+    client.subscribe("Switch");
 });
 
 client.on("message", (topic, message)=>{
     const payload =  message.toString();
     try {
-        const json=JSON.parse(payload)
-        console.log(json)
+        const str=decodeJson(payload)
         switch (topic){
             case 'Led':
-                led(json)
+                led(str)
+                break;
+            case 'Switch':
+                updateText(str)
                 break;
         }
     } catch (error) {
@@ -35,14 +32,28 @@ client.on("message", (topic, message)=>{
        console.error(error)   
     }
 });
+const decodeJson=(str)=>{
+    try{
+        return JSON.parse(payload)
+    }catch(error){
+        return str
+    }
+}
 const led=(message)=>{
      counterBox.innerText=`${message.voltage} ${message.Vunit}`
 }
+const updateText=(message)=>{
+    const state=message=='on'
+    valueBox.innerHTML=state?'ON':"OFF"
+    toggleComputer.checked=state
+    
+}
 const toggleSwitch=async(e)=>{
     try {
-        const {checked}=e.target   
-        valueBox.innerHTML=checked?'ON':"OFF"
+        const {checked}=e.target
+        valueBox.innerHTML=state?'ON':"OFF"
         const res=await axios.post('/api/toggle',{status:checked})
+        updateText(state?'on':'off');
     } catch (error) {
         console.error(error)
     }    
