@@ -38,5 +38,16 @@ client.on("message", (topic, message)=>{
 const led=(message)=>{
      counterBox.innerText=`${message.voltage} ${message.Vunit}`
 }
-const mount=()=>{}
+const toggleSwitch=async(e)=>{
+    try {
+        const {checked}=e.target   
+        valueBox.innerHTML=checked?'ON':"OFF"
+        const res=await axios.post('/api/toggle',{status:checked})
+    } catch (error) {
+        console.error(error)
+    }    
+}
+const mount=()=>{
+    toggleComputer.addEventListener('change',toggleSwitch)
+}
 document.addEventListener('DOMContentLoaded',mount)

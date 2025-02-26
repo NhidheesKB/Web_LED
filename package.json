@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "mqtt": "^5.10.4",
     "web_led": "file:"
   }
 }
