@@ -34,7 +34,7 @@ client.on("message", (topic, message)=>{
 });
 const decodeJson=(str)=>{
     try{
-        return JSON.parse(payload)
+        return JSON.parse(str)
     }catch(error){
         return str
     }
