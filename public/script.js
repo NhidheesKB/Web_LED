@@ -1,7 +1,7 @@
 const toggleComputer = document.getElementById("toggleComputer");
 const valueBox = document.getElementById("valueBox");
 const counterBox = document.getElementById("counterBox");
-const broker = "wss://2a462fd66ce44b21bde8b6550d558ab2.s1.eu.hivemq.cloud:8884/mqtt"; 
+const broker = "wss://44a2ce1fcf8c47d793062f11a186ffbd.s1.eu.hivemq.cloud:8884/mqtt"; 
 const options = {
     clientId: "web_" +crypto.randomUUID(),
     username: "Subscriber",  
