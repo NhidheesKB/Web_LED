@@ -16,8 +16,12 @@ export default async(req,res)=>{
                 },
             });
         }else{
-            return res.status(419).json({success:false,message:'Invalid Credentials'})
+            return new Response(JSON.stringify({success:false,message:'Invalid Credentials'}), {
+                status: 419,
+            });
         }
     }
-    return res.status(405).json({ error: "Method Not Allowed" });
+    return new Response(JSON.stringify({success:false,message:'Method Not Allowed'}), {
+        status: 405,
+    });
 }
