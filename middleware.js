@@ -1,6 +1,7 @@
 
 export const config = {
     matcher: '/',
+    
 };
 export default async function middleware(req){
     const cookieHeader = req.headers.get("cookie") || "";
