@@ -1,6 +1,6 @@
 
 export const config = {
-    matcher: ['/','index.html'],
+    matcher: ['/','/index.html'],
     
 };
 export default async function middleware(req){
