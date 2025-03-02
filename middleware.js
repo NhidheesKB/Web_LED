@@ -1,6 +1,6 @@
 
 export const config = {
-    matcher: '/dashboard.html',
+    matcher: '/index.html',
 };
 export default async function middleware(req){
     const cookieHeader = req.headers.get("cookie") || "";
@@ -12,6 +12,6 @@ export default async function middleware(req){
     );
     const token = cookies.auth_token || null;
     if (!token) {
-        return Response.redirect(new URL('/', req.url));
+        return Response.redirect(new URL('/login.html', req.url));
     }
 }
