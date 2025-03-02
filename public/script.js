@@ -1,3 +1,4 @@
+
 const toggleComputer = document.getElementById("toggleComputer");
 const valueBox = document.getElementById("valueBox");
 const counterBox = document.getElementById("counterBox");

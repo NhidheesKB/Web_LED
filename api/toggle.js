@@ -1,4 +1,4 @@
-import mqtt from "mqtt"; // import namespace "mqtt"
+import mqtt from "mqtt";
 export default async(req,res)=>{
     if (req.method === "POST") {
         const { status } = req.body; 

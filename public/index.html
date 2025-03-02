@@ -1,32 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP8266 Control</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0d1b2a;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .login-container {
+            background-color: #1b263b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #415a77;
+            color: white;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 50px;
+            background-color: #778da9;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #a8dadc;
+            color: #1b263b;
+        }
+        #username{
+            padding-left: 5px;
+            border-right: 200px;
+        }
+        #password{
+            padding-left: 5px;
+        }
+    </style>
 </head>
 <body>
-    
-    <div class="container">
-        <div class="box">
-            <h1>Count</h1>
-            <p id="counterBox">0</p>  
-        </div>
-        <div class="box">
-            <h1>LED</h1>
-            <p id="valueBox">OFF</p>
-        </div>
-        <div class="icon-container">
-            <div class="icon"><img src="desktop.png" class="desktopimg"></div>
-            <label class="toggle-switch">
-                <input type="checkbox" id="toggleComputer">
-                <span class="slider"></span>
-            </label>
-        </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="login(event)">
+             <input type="email" id="username" placeholder="Username" required>
+             <input type="password" id="password" placeholder="Password" required>
+             <button>Login</button>
+        </form>
+        <p id="error" style="color: red;"></p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-    <script src="script.js"></script>
+    <script src="login.js"></script>    
 </body>
 </html>
