@@ -5,7 +5,7 @@ async function login(e) {
     const password = document.getElementById("password").value.trim();
     try {
         const res=await axios.post('/api/login',{username,password},{withCredentials:true})
-        window.location.href="/index.html"
+        window.location.href="/"
     } catch (error) {
         errorNode.innerHTML="Invalid Credencials"
         setTimeout(()=>{
