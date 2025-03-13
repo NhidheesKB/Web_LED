@@ -1,4 +1,3 @@
-
 export const config = {
     matcher: ['/','/index.html'],
     

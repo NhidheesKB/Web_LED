@@ -2,7 +2,7 @@ import { login } from "../utils/auth.js";
 export const config = {
     runtime: "edge",
   };
-  
+
 export default async(req,res)=>{
     if (req.method === "POST") {
         const { username,password } = await req.json(); 

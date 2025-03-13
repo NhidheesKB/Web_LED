@@ -14,7 +14,6 @@ body {
     align-items: center;
     gap: 20px;
 }
-
 .icon-container {
     display: flex;
     flex-direction: column;

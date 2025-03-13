@@ -15,6 +15,5 @@ export default async(req,res)=>{
         client.publish("Switch", state,{qos:0});
         return res.status(200).json({success:true})
       }
-    
       return res.status(405).json({ error: "Method Not Allowed" });
 }

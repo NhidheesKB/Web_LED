@@ -1,4 +1,3 @@
-
 const toggleComputer = document.getElementById("toggleComputer");
 const valueBox = document.getElementById("valueBox");
 const counterBox = document.getElementById("counterBox");
@@ -15,7 +14,6 @@ client.on("connect", async function () {
     client.subscribe("Led");
     client.subscribe("Switch");
 });
-
 client.on("message", (topic, message)=>{
     const payload =  message.toString();
     try {
