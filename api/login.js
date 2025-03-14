@@ -1,27 +1,17 @@
-import { login } from "../utils/auth.js";
-export const config = {
-    runtime: "edge",
-  };
+import { login } from "../../utils/auth";
 
-export default async(req,res)=>{
+export default async function handler(req, res) {
     if (req.method === "POST") {
-        const { username,password } = await req.json(); 
-        const loginres=await login(username,password)
-        if(loginres.token){
-            return new Response(JSON.stringify({ success: true, message: "Login successful" }), {
-                status: 200,
-                headers: {
-                  "Content-Type": "application/json",
-                  "Set-Cookie": `auth_token=${loginres.token}; Path=/; Secure; HttpOnly; SameSite=Strict`,
-                },
-            });
-        }else{
-            return new Response(JSON.stringify({success:false,message:'Invalid Credentials'}), {
-                status: 419,
-            });
+        const { username, password } = req.body;
+        const loginres = await login(username, password);
+        
+        if (loginres.token) {
+            res.setHeader("Set-Cookie", `auth_token=${loginres.token}; Path=/; Secure; HttpOnly; SameSite=Strict`);
+            return res.status(200).json({ success: true, message: "Login successful" });
+        } else {
+            return res.status(419).json({ success: false, message: "Invalid Credentials" });
         }
     }
-    return new Response(JSON.stringify({success:false,message:'Method Not Allowed'}), {
-        status: 405,
-    });
+
+    return res.status(405).json({ success: false, message: "Method Not Allowed" });
 }
