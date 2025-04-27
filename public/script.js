@@ -1,6 +1,7 @@
 const toggleComputer = document.getElementById("toggleComputer");
 const valueBox = document.getElementById("valueBox");
 const counterBox = document.getElementById("counterBox");
+const currentBox=document.getElementById('currentBox');
 const broker = "wss://44a2ce1fcf8c47d793062f11a186ffbd.s1.eu.hivemq.cloud:8884/mqtt"; 
 const options = {
     clientId: "web_" +crypto.randomUUID(),
@@ -39,7 +40,8 @@ const decodeJson=(str)=>{
     }
 }
 const led=(message)=>{
-     counterBox.innerText=`${message.voltage} ${message.Vunit}`
+     counterBox.innerText=`${message.voltage} ${message.Vunit}`;
+     currentBox.innerText=`${message.Current} ${message.Cunit}`;
 }
 const updateText=(message)=>{
     const state=message=='on'
