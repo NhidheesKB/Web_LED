@@ -12,7 +12,7 @@ const options = {
 const client = mqtt.connect(broker, options);
 client.on("connect", async function () {
     console.log("Connected to HiveMQ Cloud");
-    client.subscribe("Led");
+    client.subscribe("Data");
     client.subscribe("Switch");
 });
 client.on("message", (topic, message)=>{
@@ -20,7 +20,7 @@ client.on("message", (topic, message)=>{
     try {
         const str=decodeJson(payload)
         switch (topic){
-            case 'Led':
+            case 'Data':
                 led(str)
                 break;
             case 'Switch':
